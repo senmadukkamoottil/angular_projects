@@ -6,12 +6,12 @@
         <div class='row'>
             <div class='col-md-2'>Filter by:</div>
             <div class='col-md-4'>
-                <input type='text'/>
+                <input type='text'[(ngModel)]='filterText'/>
             </div>
         </div>
         <div class='row'>
             <div class='col-md-6'>
-     
+                    {{filterText|uppercase}}
             </div>
         </div>
         <div class='table-responsive'>
@@ -40,9 +40,9 @@
                             >
                         </td>
                         <td>{{product.productName}}</td>
-                        <td>{{product.productCode}}</td>
+                        <td>{{product.productCode|lowercase}}</td>
                         <td>{{product.releaseDate}}</td>
-                        <td>{{product.price}}</td>
+                        <td>{{product.price|currency:usd:true}}</td>
                         <td>{{product.starRating}}</td>
                     </tr>
                 </tbody>
