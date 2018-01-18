@@ -1,12 +1,13 @@
 import { Component } from '@angular/core'
 import { Iproduct } from './product';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
     selector: 'pm-products',
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent{
+export class ProductListComponent implements OnInit{
     public pageTitle = 'Product Listing';
     imageHeight: number = 30;
     showImage: boolean = true;
@@ -19,7 +20,7 @@ export class ProductListComponent{
             "releaseDate": "March 19, 2016",
             "description": "Leaf rake with 48-inch wooden handle.",
             "price": 19.9567,
-            "starRating": 3.2,
+            "starRating": 3.5,
             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
         },
         {
@@ -33,10 +34,18 @@ export class ProductListComponent{
             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
         }
     ];
+
+    onRatingClicked(message: string): void{
+        this.pageTitle = 'Product List '+ message;
+    }
+
     toggleImage(): void{
         this.showImage = !this.showImage;
     };
     toggleButton(): void{
 
     };
+    ngOnInit(): void{
+        console.log("on init here");
+    }
 }
