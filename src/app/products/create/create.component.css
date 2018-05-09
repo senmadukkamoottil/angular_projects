@@ -1,0 +1,7 @@
+.error_field{
+    color: red;
+}
+
+.error_field input {
+    border-color: red;
+}

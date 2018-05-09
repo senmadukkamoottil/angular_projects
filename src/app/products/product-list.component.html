@@ -39,11 +39,12 @@
                                  [height]='imageHeight'
                             >
                         </td>
-                        <td>{{product.productName}}</td>
+                        <td><a #product_name_link [routerLink]="['/products',product.productId]">{{product.productName}}</a></td>
                         <td>{{product.productCode|lowercase|convertToSpaces:'-'}}</td>
                         <td>{{product.releaseDate}}</td>
-                        <td>{{product.price|currency:usd:true}}</td>
-                        <td><pm-star [rating]='product.starRating'
+                <!-- Use a template reference variable to access child component value directly in parent template 'starRef' -->
+                        <td>{{product.price|currency:usd:true}}=>{{ starRef.starWidth }}</td>
+                        <td><pm-star #starRef [rating]='product.starRating'
                             (ratingClicked)='onRatingClicked($event)'
                             ></pm-star></td>
                     </tr>

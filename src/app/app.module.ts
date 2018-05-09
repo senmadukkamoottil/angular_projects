@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpBackend } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -10,7 +10,8 @@ import { StarComponent } from './shared/star.component';
 import { ProductDetailComponent } from './products/product-detail.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { RouterModule } from '@angular/router';
-
+import { HttpClientModule } from '@angular/common/http';
+import { CreateComponent } from './products/create/create.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +20,15 @@ import { RouterModule } from '@angular/router';
     ConvertToSpacesPipe,
     StarComponent,
     ProductDetailComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
+      { path: 'products/create', component: CreateComponent},
       { path: 'products', component: ProductListComponent },
       { path: 'products/:id', component: ProductDetailComponent},
       { path: 'welcome', component: WelcomeComponent },
