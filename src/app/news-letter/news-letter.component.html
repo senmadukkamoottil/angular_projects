@@ -1,0 +1,40 @@
+<form (ngSubmit) = "submitForm(newsLetterForm)" #newsLetterForm = "ngForm">
+  <div class="col-sm-12">
+    <div class="col-sm-12">
+      <div class="col-md-6">
+        <label [ngClass] = "{'has-error':(firstNameVar.touched && firstNameVar.invalid)}" for="firstName">First Name</label>
+      </div>
+      <div class="col-md-6">
+        <input [(ngModel)] = newsLetterObj.firstName 
+               #firstNameVar="ngModel" 
+               required
+               minlength="3"
+               type="text" 
+               value="" 
+               id="firstName" 
+               name="firstName">
+               <span *ngIf="firstNameVar.touched && firstNameVar.invalid">Enter a valid first name</span>
+      </div>
+    </div> 
+    <div class="col-sm-12">
+      <div class="col-sm-6">
+        <label [ngClass] = "{'has-error':(lastNameVar.touched && lastNameVar.invalid)}" for="lastName">Last Name</label>
+      </div>
+      <div class="col-sm-6">
+        <input 
+              type="text" 
+              [(ngModel)] = newsLetterObj.lastName
+              #lastNameVar = "ngModel"
+              required
+              minlength="3"
+              id="lastName" 
+              value="" 
+              name="lastName">
+              <span *ngIf="lastNameVar.touched && lastNameVar.invalid">Enter a valid last name</span>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <input [disabled] = "newsLetterForm.invalid" type="submit" value="Submit">
+    </div>
+  </div>
+</form> 

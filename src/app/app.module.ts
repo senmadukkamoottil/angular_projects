@@ -9,11 +9,14 @@ import { WelcomeComponent } from './home/welcome.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductModule } from './products/product.module';
+import { NewsLetterComponent } from './news-letter/news-letter.component';
+import { NewsLetter } from './news-letter/news-letter';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    NewsLetterComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +24,7 @@ import { ProductModule } from './products/product.module';
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },
+      { path: 'news-letter', component : NewsLetterComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full'},
       { path: '**', redirectTo: 'welcome', pathMatch: 'full'}
     ]),
