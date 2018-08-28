@@ -1,0 +1,29 @@
+<form [formGroup] = "customerForm" (ngSubmit) = 'submitForm()'> 
+  <div class="row">
+    <div class="col-md-6">
+      <label for="lastFirst">First Name</label>
+    </div>
+    <div class="col-md-6">
+      <input formControlName = "firstName"  type="text" value="" id="firstName">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label for="lastName">Last Name</label>
+    </div>
+    <div class="col-md-6">
+      <input formControlName = "lastName" required type="text" value="" id="lastName">
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-6">
+        <label for="email">Email</label>
+      </div>
+      <div class="col-md-6">
+        <input formControlName = "email" type="text" value="" id="email">
+      </div>
+    </div>
+  <div class="row">
+    <input [disabled] = "customerForm.invalid" type="submit" value="Submit">
+  </div>
+</form>
