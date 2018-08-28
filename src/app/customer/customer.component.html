@@ -7,7 +7,7 @@
                                   for="lastFirst">First Name</label>
     </div>
     <div class="col-md-6">
-      <input formControlName = "firstName" required  type="text" value="" id="firstName">
+      <input formControlName = "firstName" type="text" value="" id="firstName">
     </div>
   </div>
   <div class="row">
@@ -23,7 +23,9 @@
   </div>
   <div class="row">
       <div class="col-md-6">
-        <label for="email">Email</label>
+        <label for="email" 
+            [ngClass]="{'has-error':(customerForm.get('email').touched 
+                          &&customerForm.get('email').invalid)}">Email</label>
       </div>
       <div class="col-md-6">
         <input formControlName = "email" type="text" value="" id="email">

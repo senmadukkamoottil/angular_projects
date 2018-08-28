@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 // import { FormControl } from '@angular/forms';
 import { Customer } from './customer';
 
@@ -30,9 +30,9 @@ export class CustomerComponent implements OnInit {
     }); */
 
     this.customerForm = this.fb.group({
-      firstName: '',
+      firstName: ['Sen', [Validators.required, Validators.minLength(3)]],
       lastName: { value: 'Ben', disabled: false },
-      email: ''
+      email: ['', [Validators.pattern('[a-z0-9._]+@[a-z0-9-.]+'), Validators.minLength(3)]]
     });
   }
 
