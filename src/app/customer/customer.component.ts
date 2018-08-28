@@ -30,14 +30,30 @@ export class CustomerComponent implements OnInit {
     }); */
 
     this.customerForm = this.fb.group({
-      firstName: ['Sen', [Validators.required, Validators.minLength(3)]],
-      lastName: { value: 'Ben', disabled: false },
-      email: ['', [Validators.pattern('[a-z0-9._]+@[a-z0-9-.]+'), Validators.minLength(3)]]
+      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: { value: '', disabled: false },
+      email: ['', [Validators.pattern('[a-z0-9._]+@[a-z0-9-.]+'), Validators.minLength(3)]],
+      phone: '',
+      sendVia: 'email'
     });
   }
 
   submitForm() {
     console.log(this.customerForm.value);
+  }
+
+  changeViaValidation(viaVal: string): void {
+    const phoneControlField = this.customerForm.get('phone');
+    const emailControlField = this.customerForm.get('email');
+    if (viaVal === 'email') {
+      emailControlField.setValidators([Validators.required, Validators.minLength(3)]);
+      phoneControlField.clearValidators();
+    } else {
+      phoneControlField.setValidators([Validators.required, Validators.minLength(6)]);
+      emailControlField.clearValidators();
+    }
+    phoneControlField.updateValueAndValidity();
+    emailControlField.updateValueAndValidity();
   }
 
 }
