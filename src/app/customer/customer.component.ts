@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
+// import { FormControl } from '@angular/forms';
 import { Customer } from './customer';
 
 @Component({
@@ -12,20 +13,26 @@ export class CustomerComponent implements OnInit {
   customerForm: FormGroup;
   customer: Customer;
 
-  constructor() {
+  constructor(public fb: FormBuilder) {
     this.customer = new Customer();
   }
 
   ngOnInit() {
-    this.customerForm = new FormGroup({
+    /*this.customerForm = new FormGroup({
       firstName: new FormControl(),
       lastName: new FormControl(),
       email: new FormControl()
-    });
+    });*/
 
-    this.customerForm.patchValue({
+    /*this.customerForm.patchValue({
       firstName: 'Seen',
       lastName: 'MAdukkamoottil'
+    }); */
+
+    this.customerForm = this.fb.group({
+      firstName: '',
+      lastName: { value: 'Ben', disabled: false },
+      email: ''
     });
   }
 
