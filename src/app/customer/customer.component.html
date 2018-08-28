@@ -44,7 +44,17 @@
       <input type="radio" value="phone" formControlName="sendVia" (click)="changeViaValidation('phone')">
     </div>
   </div>
-    <div class="row">
-      <input [disabled]="customerForm.invalid" type="submit" value="Submit">
+  <div class="row">
+    <div class="col-md-6">
+        <label 
+        [ngClass] = "{'has-error':customerForm.get('rating').errors
+                       && customerForm.get('rating').touched}">Rating</label>
     </div>
+    <div class="col-md-6">
+      <input type="text" value="" formControlName="rating">
+    </div>
+  </div>
+  <div class="row">
+    <input [disabled]="customerForm.invalid" type="submit" value="Submit">
+  </div>
 </form>
