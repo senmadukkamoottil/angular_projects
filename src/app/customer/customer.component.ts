@@ -18,9 +18,14 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit() {
     this.customerForm = new FormGroup({
-      firstName: new FormControl('Sen'),
+      firstName: new FormControl(),
       lastName: new FormControl(),
       email: new FormControl()
+    });
+
+    this.customerForm.patchValue({
+      firstName: 'Seen',
+      lastName: 'MAdukkamoottil'
     });
   }
 

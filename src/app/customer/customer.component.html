@@ -1,15 +1,21 @@
 <form [formGroup] = "customerForm" (ngSubmit) = 'submitForm()'> 
   <div class="row">
     <div class="col-md-6">
-      <label for="lastFirst">First Name</label>
+      <label 
+        [ngClass] = "{'has-error':(customerForm.get('firstName').touched 
+                                  && customerForm.get('firstName').invalid)}" 
+                                  for="lastFirst">First Name</label>
     </div>
     <div class="col-md-6">
-      <input formControlName = "firstName"  type="text" value="" id="firstName">
+      <input formControlName = "firstName" required  type="text" value="" id="firstName">
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
-      <label for="lastName">Last Name</label>
+      <label 
+        [ngClass] = "{'has-error': (customerForm.get('lastName').touched 
+                                && customerForm.get('lastName').invalid) }"
+                                for="lastName">Last Name</label>
     </div>
     <div class="col-md-6">
       <input formControlName = "lastName" required type="text" value="" id="lastName">
