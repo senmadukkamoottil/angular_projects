@@ -1,0 +1,70 @@
+<form [formGroup]="customerForm" (ngSubmit)='submitForm()'>
+  <div class="row">
+    <div class="col-md-6">
+      <label [ngClass]="{'has-error':(customerForm.get('firstName').touched 
+                                  && customerForm.get('firstName').invalid)}" for="lastFirst">First Name</label>
+    </div>
+    <div class="col-md-6">
+      <input formControlName="firstName" type="text" value="" id="firstName">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label [ngClass]="{'has-error': (customerForm.get('lastName').touched 
+                                && customerForm.get('lastName').invalid) }" for="lastName">Last Name</label>
+    </div>
+    <div class="col-md-6">
+      <input formControlName="lastName" required type="text" value="" id="lastName">
+    </div>
+  </div>
+  <div formGroupName="emailGroup" [ngClass]="{'has-error':customerForm.get('emailGroup').errors}">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="email" [ngClass]="{'has-error':(customerForm.get('emailGroup.email').touched 
+                          &&customerForm.get('emailGroup.email').invalid)}">Email</label>
+      </div>
+      <div class="col-md-6">
+        <input formControlName="email" type="text" value="" id="email">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label [ngClass]="{'has-error':(customerForm.get('emailGroup.confirmEmail').touched
+                            && customerForm.get('emailGroup.confirmEmail').invalid)}" for="confirmEmail">Confirm Email</label>
+      </div>
+      <div class="col-md-6">
+        <input formControlName="confirmEmail" type="text" value="" id="confirmEmail">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label for="phone" [ngClass]="{'has-error':(customerForm.get('phone').touched 
+        &&customerForm.get('phone').invalid)}">Phone</label>
+    </div>
+    <div class="col-md-6">
+      <input type="text" value="" formControlName="phone" id="phone">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6"></div>
+    <div class="col-md-6">
+      <label>Email</label>
+      <input type="radio" value="email" formControlName="sendVia" (click)="changeViaValidation('email')">
+      <label>Phone</label>
+      <input type="radio" value="phone" formControlName="sendVia" (click)="changeViaValidation('phone')">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label [ngClass]="{'has-error':customerForm.get('rating').errors
+                       && customerForm.get('rating').touched}">Rating</label>
+    </div>
+    <div class="col-md-6">
+      <input type="text" value="" formControlName="rating">
+    </div>
+  </div>
+  <div class="row">
+    <input [disabled]="customerForm.invalid" type="submit" value="Submit">
+  </div>
+</form>
