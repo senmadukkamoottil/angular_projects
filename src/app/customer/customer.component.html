@@ -17,18 +17,29 @@
       <input formControlName="lastName" required type="text" value="" id="lastName">
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <label for="email" [ngClass]="{'has-error':(customerForm.get('email').touched 
-                          &&customerForm.get('email').invalid)}">Email</label>
+  <div formGroupName="emailGroup" [ngClass]="{'has-error':customerForm.get('emailGroup').errors}">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="email" [ngClass]="{'has-error':(customerForm.get('emailGroup.email').touched 
+                          &&customerForm.get('emailGroup.email').invalid)}">Email</label>
+      </div>
+      <div class="col-md-6">
+        <input formControlName="email" type="text" value="" id="email">
+      </div>
     </div>
-    <div class="col-md-6">
-      <input formControlName="email" type="text" value="" id="email">
+    <div class="row">
+      <div class="col-md-6">
+        <label [ngClass]="{'has-error':(customerForm.get('emailGroup.confirmEmail').touched
+                            && customerForm.get('emailGroup.confirmEmail').invalid)}" for="confirmEmail">Confirm Email</label>
+      </div>
+      <div class="col-md-6">
+        <input formControlName="confirmEmail" type="text" value="" id="confirmEmail">
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
-        <label for="email" [ngClass]="{'has-error':(customerForm.get('phone').touched 
+      <label for="phone" [ngClass]="{'has-error':(customerForm.get('phone').touched 
         &&customerForm.get('phone').invalid)}">Phone</label>
     </div>
     <div class="col-md-6">
@@ -40,14 +51,13 @@
     <div class="col-md-6">
       <label>Email</label>
       <input type="radio" value="email" formControlName="sendVia" (click)="changeViaValidation('email')">
-      <label >Phone</label>
+      <label>Phone</label>
       <input type="radio" value="phone" formControlName="sendVia" (click)="changeViaValidation('phone')">
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
-        <label 
-        [ngClass] = "{'has-error':customerForm.get('rating').errors
+      <label [ngClass]="{'has-error':customerForm.get('rating').errors
                        && customerForm.get('rating').touched}">Rating</label>
     </div>
     <div class="col-md-6">

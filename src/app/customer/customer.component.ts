@@ -12,6 +12,17 @@ function ratingValiation(c: AbstractControl): {[key: string]: boolean}| null {
   }
 }
 
+/* Custom function to match emails */
+function emailMatcher(c: AbstractControl) {
+  const emailControl = c.get('email');
+  const confirmEmailControl = c.get('confirmEmail');
+  if (emailControl.value === confirmEmailControl.value) {
+    return null;
+  } else {
+    return { 'emailMatcher': true };
+  }
+}
+
 @Component({
   selector: 'pm-customer',
   templateUrl: './customer.component.html',
@@ -41,7 +52,10 @@ export class CustomerComponent implements OnInit {
     this.customerForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(3)]],
       lastName: { value: '', disabled: false },
-      email: ['', [Validators.pattern('[a-z0-9._]+@[a-z0-9-.]+'), Validators.minLength(3)]],
+      emailGroup: this.fb.group({
+        email: ['', [Validators.pattern('[a-z0-9._]+@[a-z0-9-.]+'), Validators.minLength(3)]],
+        confirmEmail: ['', [Validators.required, Validators.minLength(3)]]
+      }, { validator: emailMatcher }),
       phone: '',
       sendVia: 'email',
       rating: ['', [ratingValiation]]
@@ -54,7 +68,7 @@ export class CustomerComponent implements OnInit {
 
   changeViaValidation(viaVal: string): void {
     const phoneControlField = this.customerForm.get('phone');
-    const emailControlField = this.customerForm.get('email');
+    const emailControlField = this.customerForm.get('emailGroup.email');
     if (viaVal === 'email') {
       emailControlField.setValidators([Validators.required, Validators.minLength(3)]);
       phoneControlField.clearValidators();
